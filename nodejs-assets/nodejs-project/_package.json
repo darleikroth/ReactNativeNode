@@ -1,0 +1,18 @@
+{
+  "//": [
+    "Rename this sample file to package.json to use on your project.",
+    "The sample-package.json file will be overwritten in updates/reinstalls."
+  ],
+  "name": "sample-node-project",
+  "version": "0.0.1",
+  "description": "node part of the project",
+  "main": "main.js",
+  "author": "janeasystems",
+  "license": "",
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "^0.0.0",
+    "mqtt": "^2.18.8",
+    "socket.io": "^2.2.0"
+  }
+}

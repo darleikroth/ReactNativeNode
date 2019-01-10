@@ -7,7 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import nodejs from 'nodejs-mobile-react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,12 +19,39 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  state = {msg: 'initializing'}
+
+  componentWillUnmount() {
+    // nodejs.channel.post('close', 'close')
+  }
+
+  startNode = () => {
+    nodejs.start('server.js')
+    nodejs.channel.addListener('message', msg => {
+      this.setState({msg})
+      console.log('Nodejs', `From node: ${msg}`)
+    })
+  }
+
+  sendToNode = () => {
+    // nodejs.channel.post('message', 'Hello Node!')
+  }
+
+  closeClient = () => {
+    // nodejs.channel.post('close')
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
+        <Button title='Start node' onPress={this.startNode} />
+        <Button title='Send to node' onPress={this.sendToNode} />
+        <Button title='Disconnect/Connect' onPress={this.closeClient} />
+        <Text style={{marginTop: 24}}>{this.state.msg}</Text>
       </View>
     );
   }
