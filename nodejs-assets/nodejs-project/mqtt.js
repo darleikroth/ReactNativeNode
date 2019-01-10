@@ -1,11 +1,7 @@
 
 try {
   const mqtt = require('mqtt')
-  // const client  = mqtt.connect('mqtt://test.mosquitto.org')
-  const client  = mqtt.connect('mqtt://automacao.bintechnology.com.br', {
-    username: 'ezequiel',
-    password: 'ezequiel'
-  })
+  const client  = mqtt.connect('mqtt://test.mosquitto.org')
   const rn_bridge = require('rn-bridge')
 
   client.on('connect', function () {
